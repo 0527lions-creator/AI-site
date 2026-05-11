@@ -22,10 +22,10 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        <title>AI-PEL | Advanced & Intelligent Power Electronics Lab</title>
+        <title>AI-PEL | KENTECH Advanced & Intelligent Power Electronics Lab</title>
         <meta
           name="description"
-          content="Advanced and Intelligent Power Electronics Lab at Korea Institute of Energy Technology."
+          content="KENTECH Advanced and Intelligent Power Electronics Lab researching LVDC, SST, PV-ESS optimization, UPS diagnosis, On-Device AI, and power conversion systems."
         />
       </head>
       <body

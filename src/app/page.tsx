@@ -2,23 +2,21 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
-  Activity,
   ArrowUpRight,
+  Award,
   BatteryCharging,
-  BookOpenText,
   Building2,
-  Car,
+  CircuitBoard,
+  Cpu,
   Gauge,
-  GraduationCap,
-  HomeIcon,
   Mail,
   MapPin,
   Menu,
-  Microscope,
-  Presentation,
-  Sparkles,
-  Sun,
+  Network,
+  ShieldCheck,
+  SunMedium,
   Users,
   Zap,
 } from 'lucide-react';
@@ -31,125 +29,177 @@ type HomeProps = {
 type IconType = typeof BatteryCharging;
 
 const navigationItems = [
+  { href: '#profile', label: 'Profile' },
+  { href: '#performance', label: 'Performance' },
   { href: '#research', label: 'Research' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#people', label: 'People' },
-  { href: '#publications', label: 'Publications' },
+  { href: '#papers', label: 'Papers' },
   { href: '#contact', label: 'Contact' },
 ];
 
-const researchAreas: Array<{
+const impactMetrics = [
+  { value: '1,101', label: 'Total Citations', detail: 'Google Scholar' },
+  { value: '18', label: 'h-index', detail: 'i10-index 31' },
+  { value: '46', label: 'International Journals', detail: 'SCI / SCIE, IEEE 37 papers' },
+  { value: '96', label: 'Total Publications', detail: 'Journal 52 + Conference 44' },
+  { value: '67%', label: 'Q1 Journal Ratio', detail: '31 of 46 journals' },
+];
+
+const professorCareer = [
+  {
+    title: 'Assistant Professor',
+    period: '2025 - Present',
+    organization: 'KENTECH, Grid Modernization',
+  },
+  {
+    title: 'Assistant Professor',
+    period: '2022 - 2025',
+    organization: 'Kumoh National Institute of Technology, School of Electronics Engineering',
+  },
+  {
+    title: 'Senior Researcher',
+    period: '2019 - 2022',
+    organization: 'Korea Institute of Energy Research, Energy ICT Convergence Research Department',
+  },
+  {
+    title: 'Ph.D.',
+    period: 'Aug. 2019',
+    organization: 'UNIST, Division of Electrical Engineering, Power Electronics',
+  },
+];
+
+const researchPrograms: Array<{
   title: string;
+  category: string;
   description: string;
+  outcomes: string[];
   icon: IconType;
 }> = [
   {
-    title: 'Power Electronics for Vehicle',
+    title: 'LVDC Distribution System Commercialization',
+    category: 'LVDC Power System',
     description:
-      'High-efficiency power conversion technology for electric vehicles and mobility platforms.',
-    icon: Car,
+      'LVDC 배전 시스템 상용화를 위한 전력밀도, 전력품질, 전력선 통신 보안 최적화 기술 개발.',
+    outcomes: ['Power density optimization', 'Power quality improvement', 'PLC security'],
+    icon: Network,
   },
   {
-    title: 'Power Electronics for Home Appliances',
+    title: 'AI-based PV Forecasting and ESS Optimization',
+    category: 'Microgrid AI Platform',
     description:
-      'Compact converter systems for reliable, quiet, and efficient consumer electronics.',
-    icon: HomeIcon,
+      '동수농공산단 MG-EMS 실증 데이터를 기반으로 PV 발전량, 공장 부하, ESS 충방전 스케줄을 예측 및 최적화.',
+    outcomes: ['24h day-ahead forecast', 'PV/load ensemble models', 'ESS SOC scheduling'],
+    icon: SunMedium,
   },
   {
-    title: 'Power Electronics for Renewable Energy',
+    title: '1 MVA LiB-based High-power UPS Standard Model',
+    category: 'Safety-enhanced UPS',
     description:
-      'Conversion and control systems for renewable generation, storage, and grid integration.',
-    icon: Sun,
+      '다지점 전류센서 기반 UPS 상태 진단, 누설전류 분석, 실시간 고장 검출 및 위치 추정 기술 개발.',
+    outcomes: ['Leakage current analysis', 'EV/RMS/FFT diagnosis', 'Fault location estimation'],
+    icon: BatteryCharging,
   },
   {
-    title: 'Fault Diagnosis and Detection',
+    title: 'On-Device AI Power Conversion System',
+    category: 'Smart Converter Diagnosis',
     description:
-      'Intelligent monitoring methods that identify abnormal behavior in power conversion systems.',
-    icon: Activity,
+      '능동·수동 소자의 전기적 특성 변화를 이용한 전력변환장치 실시간 상태 진단 및 제어 기술 연구.',
+    outcomes: ['FPGA-based On-Device AI', 'Device data acquisition', 'Real-time diagnosis'],
+    icon: Cpu,
   },
   {
-    title: 'High Power Density',
+    title: 'AI-based Arc Fault Detection Algorithm',
+    category: 'Fault Detection',
     description:
-      'Thermal, magnetic, and circuit design strategies for smaller and higher-performance converters.',
+      '전력변환시스템 내 아크고장 데이터 수집과 AI 기반 실시간 진단 알고리즘 개발.',
+    outcomes: ['Arc data processing', 'AI model selection', 'Real-time fault detection'],
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Solid State Transformer Model and Hardware Test',
+    category: 'SST and LVDC',
+    description:
+      '22.9 kV 계통 대응 7.65 kV 입력에서 800 V LVDC 변환을 위한 SST 시뮬레이션 모델과 Power-HIL 실증 시험.',
+    outcomes: ['500 kVA target model', '20 kHz SiC switching', '1200 V to 800 V DAB'],
+    icon: Zap,
+  },
+  {
+    title: '30 kW Water Electrolyzer Converter',
+    category: 'Hydrogen Power Conversion',
+    description:
+      '수전해장치용 VIENNA Rectifier 및 LLC 공진형 컨버터 개발을 통한 고효율 전력변환 플랫폼 연구.',
+    outcomes: ['VIENNA rectifier', 'LLC resonant converter', '30 kW class system'],
     icon: Gauge,
   },
+  {
+    title: 'Switching Device Aging Sensing Circuit',
+    category: 'Reliability Sensing',
+    description:
+      '스위칭 소자 노화 측정을 위한 센싱 회로와 전력반도체 상태 기반 신뢰성 평가 기술 개발.',
+    outcomes: ['Aging signal sensing', 'Device condition monitoring', 'Reliability evaluation'],
+    icon: CircuitBoard,
+  },
 ];
 
-const projects = [
+const selectedPapers = [
+  'G.-H. Yoon, H.-P. Park, IEEE Transactions on Power Electronics, IF 6.5',
+  'W. Kim, H.-P. Park, IEEE Journal of Emerging and Selected Topics in Power Electronics, IF 4.9',
+  'J.-A. Hong, H.-P. Park, IEEE Journal of Emerging and Selected Topics in Power Electronics, IF 4.9',
+  'B. Kim, W. Kim, M. Jeon, S.-G. Song and H.-P. Park, IEEE Transactions on Power Electronics, IF 6.5',
+  'B. Kim, M. Kim, W. Kim and H.-P. Park, IEEE Transactions on Energy Conversion, IF 5.4',
+  'S.-J. Chang, D.-S. Cha, J.-G. Choi, J.-H. Ahn, S.-G. Song, W. Kim, H.-P. Park, IEEE JESTPE, IF 4.9',
+];
+
+const members = [
+  {
+    group: 'M.S. Students',
+    description: '전력변환 회로, 제어, AI 진단, 실증 데이터 분석을 중심으로 연구 수행.',
+  },
+  {
+    group: 'Undergraduate Students',
+    description: 'Senior, Junior, Sophomore 학부연구생이 세미나, 실험, 모델링, 측정 업무에 참여.',
+  },
+];
+
+const galleryImages = [
+  {
+    title: 'Power Electronics Laboratory',
+    src: 'https://picsum.photos/seed/aipel-laboratory-power-module/1080/760',
+  },
+  {
+    title: 'Converter Measurement Setup',
+    src: 'https://picsum.photos/seed/aipel-converter-measurement/920/520',
+  },
   {
     title: 'Vehicle Power Conversion',
-    description:
-      'Power converter research for automotive systems where efficiency, safety, and robustness are central.',
-    imageUrl: 'https://picsum.photos/seed/aipel-vehicle-power/920/680',
-    tags: ['Vehicle', 'Converter', 'Reliability'],
+    src: 'https://picsum.photos/seed/aipel-vehicle-power/920/680',
   },
-  {
-    title: 'Appliance Power Systems',
-    description:
-      'Compact and intelligent power electronics for home appliances and everyday energy use.',
-    imageUrl: 'https://picsum.photos/seed/aipel-home-appliance/920/680',
-    tags: ['Appliance', 'Control', 'Efficiency'],
-  },
-  {
-    title: 'Renewable Energy Interface',
-    description:
-      'Power conversion systems that connect renewable sources with storage, loads, and the grid.',
-    imageUrl: 'https://picsum.photos/seed/aipel-renewable-energy/920/680',
-    tags: ['Renewable', 'Grid', 'Storage'],
-  },
-];
-
-const people = [
-  {
-    name: 'Prof. H. P. Park',
-    role: 'Principal Investigator',
-    detail: 'Power electronics, intelligent power conversion, and high-density converter systems.',
-  },
-  {
-    name: 'Graduate Researchers',
-    role: 'M.S. / Ph.D. Students',
-    detail: 'Researching power converters, control, fault diagnosis, renewable energy, and mobility systems.',
-  },
-  {
-    name: 'Undergraduate Interns',
-    role: 'Research Interns',
-    detail: 'Participating in circuit experiments, simulation, hardware testing, and technical seminars.',
-  },
-];
-
-const publications = [
-  'Research output in automotive power converters, home appliance power electronics, and renewable energy conversion.',
-  'Technical contributions in fault diagnosis, detection, control, and intelligent monitoring for converter systems.',
-  'Hardware-oriented work targeting high power density, practical implementation, and measurable efficiency.',
-];
-
-const labStats = [
-  { value: 'EV', label: 'Vehicle converters' },
-  { value: 'HEA', label: 'Home appliances' },
-  { value: 'RE', label: 'Renewable energy' },
-  { value: 'HPD', label: 'High power density' },
 ];
 
 export default function Home(_props: HomeProps) {
   return (
-    <main className="min-h-screen bg-[#f7f8f6] text-slate-950">
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#f7f8f6]/92 backdrop-blur">
+    <main className="min-h-screen bg-[#06080d] text-[#f4f7fb]">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#06080d]/92 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-          <a href="#home" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-teal-700 text-sm font-bold text-white">
-              AI
+          <a href="#home" className="flex items-center gap-3" aria-label="AI-PEL home">
+            <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-[#6ee7d2]/35 bg-[#0c2423] text-xs font-semibold text-[#9ef2df]">
+              AP
             </span>
-            <span className="text-sm font-semibold tracking-normal text-slate-950">
-              AI-PEL
+            <span className="leading-tight">
+              <span className="block text-sm font-semibold tracking-normal text-white">
+                AI-PEL
+              </span>
+              <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-[#8f9aa8] sm:block">
+                Advanced & Intelligent Power Electronics Lab
+              </span>
             </span>
           </a>
 
-          <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">
+          <div className="hidden items-center gap-7 text-sm font-medium text-[#aeb8c6] lg:flex">
             {navigationItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="transition-colors hover:text-teal-800"
+                className="transition-colors hover:text-[#9ef2df]"
               >
                 {item.label}
               </a>
@@ -157,16 +207,16 @@ export default function Home(_props: HomeProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button asChild className="hidden h-9 rounded-md bg-teal-700 px-4 hover:bg-teal-800 sm:inline-flex">
+            <Button asChild className="hidden h-9 rounded-sm bg-[#d7a650] px-4 text-[#101318] hover:bg-[#efbd68] sm:inline-flex">
               <a href="#contact">
-                Join Us
+                Contact
                 <ArrowUpRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="h-9 w-9 border-slate-300 bg-transparent lg:hidden"
+              className="h-9 w-9 rounded-sm border-white/15 bg-white/5 text-white lg:hidden"
               aria-label="Open navigation"
             >
               <Menu className="h-4 w-4" />
@@ -175,247 +225,331 @@ export default function Home(_props: HomeProps) {
         </nav>
       </header>
 
-      <section id="home" className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl gap-10 px-5 py-12 sm:px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center lg:px-8">
-          <div className="max-w-3xl">
-            <Badge className="mb-6 rounded-md bg-teal-50 px-3 py-1.5 text-teal-800 hover:bg-teal-50">
-              Advanced & Intelligent Power Electronics Lab
+      <section id="home" className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0">
+          <Image
+            src="https://picsum.photos/seed/aipel-converter-measurement/1800/1100"
+            alt="Power converter measurement setup"
+            width={1800}
+            height={1100}
+            priority
+            className="h-full w-full object-cover opacity-32"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#06080d_0%,rgba(6,8,13,0.94)_46%,rgba(6,8,13,0.62)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,8,13,0.05)_0%,#06080d_100%)]" />
+        </div>
+
+        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.08fr_0.92fr] md:items-end lg:px-8">
+          <div className="max-w-4xl pb-4">
+            <Badge className="mb-6 rounded-sm border border-[#6ee7d2]/30 bg-[#0c2423]/85 px-3 py-1.5 text-[#9ef2df] hover:bg-[#0c2423]/85">
+              KENTECH Grid Modernization
             </Badge>
-            <h1 className="text-4xl font-semibold leading-[1.04] tracking-normal text-slate-950 sm:text-6xl lg:text-7xl">
-              Advancing intelligent power conversion for practical energy systems.
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-6xl">
+              Advanced power electronics lab for AI-driven grid and converter systems.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-              AI-PEL is the power electronics laboratory at Korea Institute of
-              Energy Technology. The lab researches power conversion for
-              vehicles, home appliances, renewable energy, fault diagnosis, and
-              high power density converter systems.
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#c7d0dd] sm:text-lg">
+              AI-PEL은 LVDC, PV·ESS, UPS, Solid State Transformer, On-Device AI,
+              아크고장 검출, 수전해 전력변환을 연구하는 전력전자 연구실입니다.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="rounded-md bg-teal-700 px-6 hover:bg-teal-800">
-                <a href="#research">
-                  Explore Research
-                  <Microscope className="ml-2 h-4 w-4" />
+              <Button asChild size="lg" className="rounded-sm bg-[#d7a650] px-6 text-[#101318] hover:bg-[#efbd68]">
+                <a href="#performance">
+                  Research Performance
+                  <Award className="ml-2 h-4 w-4" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-md border-slate-300 bg-white px-6"
+                className="rounded-sm border-white/20 bg-white/5 px-6 text-white hover:bg-white/10 hover:text-white"
               >
-                <a href="#publications">View Publications</a>
+                <a href="#research">Research Programs</a>
               </Button>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-slate-950 shadow-sm">
-            <Image
-              src="https://picsum.photos/seed/aipel-power-electronics/1000/1150"
-              alt="Power electronics research workspace"
-              width={1000}
-              height={1150}
-              priority
-              className="aspect-[5/6] h-full w-full object-cover opacity-85"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-5 pt-20">
-              <p className="text-sm font-medium text-teal-200">
-                Intelligent power electronics for efficient energy conversion
-              </p>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {labStats.map((item) => (
-                  <div key={item.label} className="rounded-md border border-white/12 bg-white/8 p-3 backdrop-blur">
-                    <p className="text-xl font-semibold text-white">{item.value}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-300">{item.label}</p>
-                  </div>
-                ))}
+          <div className="grid gap-3 pb-4 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+            {impactMetrics.slice(0, 3).map((metric) => (
+              <div key={metric.label} className="border border-white/12 bg-[#0b111a]/85 p-4 backdrop-blur">
+                <p className="text-2xl font-semibold text-white">{metric.value}</p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#d7a650]">
+                  {metric.label}
+                </p>
+                <p className="mt-2 text-xs leading-5 text-[#aeb8c6]">{metric.detail}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="research" className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
-            Research
+      <section id="profile" className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[0.78fr_1.22fr] lg:px-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+            Professor
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-            Power electronics research from converter design to system diagnosis
+          <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+            Prof. Hwa Pyeong Park
           </h2>
+          <p className="mt-5 text-sm leading-7 text-[#aeb8c6]">
+            전력전자 기반 하드웨어, AI 진단, LVDC 및 그리드 현대화 연구를 수행합니다.
+            UNIST 전기전자공학부 전력전자 분야에서 박사학위를 취득했습니다.
+          </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {researchAreas.map((area) => {
-            const Icon = area.icon;
-
-            return (
-              <article key={area.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md bg-amber-100 text-amber-800">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-950">{area.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{area.description}</p>
-              </article>
-            );
-          })}
+        <div className="grid gap-3">
+          {professorCareer.map((item) => (
+            <article key={`${item.title}-${item.period}`} className="grid gap-3 border border-white/10 bg-[#0b111a] p-5 sm:grid-cols-[150px_1fr]">
+              <div>
+                <p className="text-sm font-semibold text-white">{item.title}</p>
+                <p className="mt-1 text-xs font-medium text-[#d7a650]">{item.period}</p>
+              </div>
+              <p className="text-sm leading-7 text-[#c7d0dd]">{item.organization}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="projects" className="border-y border-slate-200 bg-slate-950 text-white">
+      <section id="performance" className="border-y border-white/10 bg-[#0a0f17]">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div className="mb-10 grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
-                Projects
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+                Research Performance
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-normal sm:text-4xl">
-                Converter systems for mobility, appliances, and renewable energy
+              <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+                Citation, publication, and journal impact.
               </h2>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-slate-300">
-              The lab covers a variety of power conversion applications, from
-              automotive power converters and home appliances to renewable
-              energy systems.
+            <p className="text-sm leading-7 text-[#aeb8c6]">
+              소개자료 기준 Google Scholar 및 SCI/SCIE 중심 연구성과를 전면에 배치해,
+              연구실의 정량적 신뢰도를 빠르게 확인할 수 있도록 구성했습니다.
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-3">
-            {projects.map((project) => (
-              <article key={project.title} className="overflow-hidden rounded-lg border border-white/10 bg-white/6">
-                <Image
-                  src={project.imageUrl}
-                  alt={`${project.title} research image`}
-                  width={920}
-                  height={680}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-                <div className="p-5">
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-teal-100">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">{project.description}</p>
-                </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {impactMetrics.map((metric) => (
+              <article key={metric.label} className="border border-white/10 bg-[#101722] p-5">
+                <p className="text-3xl font-semibold text-white">{metric.value}</p>
+                <p className="mt-3 text-sm font-semibold text-[#d7a650]">{metric.label}</p>
+                <p className="mt-3 text-xs leading-5 text-[#aeb8c6]">{metric.detail}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="people" className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[0.7fr_1.3fr] lg:px-8">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
-            People
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-            Researchers building next-generation power electronics
-          </h2>
-          <p className="mt-5 text-sm leading-7 text-slate-600">
-            AI-PEL welcomes students interested in power conversion, converter
-            control, hardware experiments, renewable energy, and intelligent
-            diagnosis.
+      <section id="research" className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-end">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+              Research Programs
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+              AI, power conversion, and grid modernization programs.
+            </h2>
+          </div>
+          <p className="text-sm leading-7 text-[#aeb8c6]">
+            PDF 소개자료의 연구과제명을 반영해 실증 데이터, 하드웨어 검증,
+            AI 기반 상태진단, LVDC 계통 연계 중심으로 구조를 재편했습니다.
           </p>
         </div>
 
-        <div className="grid gap-4">
-          {people.map((person) => (
-            <article key={person.name} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-teal-50 text-teal-800">
-                <Users className="h-5 w-5" />
+        <div className="grid gap-4 md:grid-cols-2">
+          {researchPrograms.map((program) => {
+            const Icon = program.icon;
+
+            return (
+              <article key={program.title} className="border border-white/10 bg-[#0b111a] p-5 transition-colors hover:border-[#6ee7d2]/35">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d7a650]">
+                      {program.category}
+                    </p>
+                    <h3 className="mt-3 text-xl font-semibold leading-7 text-white">{program.title}</h3>
+                  </div>
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-[#0c2423] text-[#9ef2df]">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                </div>
+                <p className="mt-4 text-sm leading-7 text-[#c7d0dd]">{program.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {program.outcomes.map((outcome) => (
+                    <span key={outcome} className="border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-[#aeb8c6]">
+                      {outcome}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[#0a0f17]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+              Focus Project
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+              Solid State Transformer and AI-based MG-EMS.
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-[#aeb8c6]">
+              SST는 22.9 kV 계통 대응 7.65 kV 입력과 800 V LVDC 버스를 목표로 하며,
+              Power-HIL 기반 계통 연계 실증을 통해 운영 안정성을 검증합니다.
+            </p>
+          </div>
+
+          <div className="grid gap-3">
+            {[
+              ['SST Rating', '500 kVA target, 7.65 kV input, 800 V LVDC output'],
+              ['SiC Switching', '20 kHz high-frequency operation for high power density and low loss'],
+              ['DAB Conversion', '1200 V to 800 V, 50 kV class high-isolation bidirectional DAB'],
+              ['MG-EMS AI', 'PV/load forecasting, REST API integration, ESS day-ahead 24h scheduling'],
+            ].map(([title, description]) => (
+              <div key={title} className="grid gap-3 border border-white/10 bg-[#101722] p-5 sm:grid-cols-[150px_1fr]">
+                <p className="text-sm font-semibold text-[#d7a650]">{title}</p>
+                <p className="text-sm leading-7 text-[#c7d0dd]">{description}</p>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-950">{person.name}</h3>
-                <p className="mt-1 text-sm font-medium text-teal-700">{person.role}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-600">{person.detail}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="papers" className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-end">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+              Papers
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+              Selected journal papers with lab students.
+            </h2>
+          </div>
+          <p className="text-sm leading-7 text-[#aeb8c6]">
+            IEEE Transactions on Power Electronics, IEEE JESTPE, IEEE Transactions on Energy Conversion 등
+            전력전자 핵심 저널 중심의 연구성과를 정리했습니다.
+          </p>
+        </div>
+
+        <div className="grid gap-3">
+          {selectedPapers.map((paper, index) => (
+            <article key={paper} className="grid gap-4 border border-white/10 bg-[#0b111a] p-5 sm:grid-cols-[52px_1fr]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#0c2423] text-sm font-semibold text-[#9ef2df]">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <p className="text-sm leading-7 text-[#c7d0dd]">{paper}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[#0a0f17]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+          <div className="mb-10 grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+                Visual Assets
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+                Technical imagery with a restrained dark interface.
+              </h2>
+            </div>
+            <p className="text-sm leading-7 text-[#aeb8c6]">
+              기존 사이트에서 사용한 사진 자산을 유지하면서, 연구성과 중심 콘텐츠와 어울리도록
+              명도와 레이아웃을 정돈했습니다.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {galleryImages.map((image) => (
+              <figure key={image.src} className="group overflow-hidden border border-white/10 bg-[#0b111a]">
+                <Image
+                  src={image.src}
+                  alt={image.title}
+                  width={1080}
+                  height={760}
+                  className="aspect-[4/3] w-full object-cover opacity-75 transition duration-300 group-hover:opacity-100"
+                />
+                <figcaption className="border-t border-white/10 px-4 py-3 text-sm font-medium text-[#e7edf5]">
+                  {image.title}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
+            Members
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+            Graduate and undergraduate researchers.
+          </h2>
+        </div>
+
+        <div className="grid gap-4">
+          {members.map((member) => (
+            <article key={member.group} className="border border-white/10 bg-[#0b111a] p-5">
+              <div className="flex items-start gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-[#0c2423] text-[#9ef2df]">
+                  <Users className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">{member.group}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#aeb8c6]">{member.description}</p>
+                </div>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="publications" className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[1fr_1fr] lg:px-8">
+      <section id="contact" className="border-t border-white/10 bg-[#05070b]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[1fr_1fr] md:items-start lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
-              Publications
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-              Publications and technical output in power electronics
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {publications.map((publication, index) => (
-              <div key={publication} className="flex gap-4 rounded-lg border border-slate-200 bg-[#f7f8f6] p-5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-100 text-sm font-semibold text-amber-800">
-                  {index + 1}
-                </span>
-                <p className="text-sm leading-7 text-slate-700">{publication}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-slate-200 bg-[#eef4f2]">
-        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
-          {[
-            { icon: GraduationCap, label: 'Graduate admission' },
-            { icon: Presentation, label: 'Paper study and seminar' },
-            { icon: BookOpenText, label: 'Converter design research' },
-            { icon: Sparkles, label: 'Hardware prototype testing' },
-          ].map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div key={item.label} className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white text-teal-800 shadow-sm">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <span className="text-sm font-semibold text-slate-800">{item.label}</span>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section id="contact" className="bg-slate-950 text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
               Contact
             </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-normal sm:text-4xl">
-              Join AI-PEL and work on intelligent power conversion.
+            <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+              Prospective students and collaborators are welcome.
             </h2>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300">
-              Enthusiastic students are always welcome. If you are interested in
-              power conversion, contact the lab with research interests, CV,
-              transcript, and a short introduction.
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[#aeb8c6]">
+              전력전자, 전력변환시스템, AI 기반 상태진단, LVDC 및 ESS 최적운용에 관심 있는
+              학생과 공동연구 파트너의 연락을 환영합니다.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="border border-white/10 bg-[#0b111a]">
             <a
               href="mailto:hppark@kentech.ac.kr"
-              className="flex items-center justify-between rounded-lg border border-white/10 bg-white/6 px-5 py-4 text-sm font-medium text-white transition-colors hover:bg-white/10"
+              className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-sm font-medium text-white transition-colors hover:bg-white/5"
             >
               <span className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-teal-300" />
+                <Mail className="h-4 w-4 text-[#9ef2df]" />
                 hppark@kentech.ac.kr
               </span>
-              <ArrowUpRight className="h-4 w-4 text-slate-400" />
+              <ArrowUpRight className="h-4 w-4 text-[#aeb8c6]" />
             </a>
-            <div className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/6 px-5 py-4 text-sm leading-7 text-slate-300">
-              <MapPin className="mt-1 h-4 w-4 shrink-0 text-teal-300" />
+            <a
+              href="mailto:a103203@kentech.ac.kr"
+              className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-sm font-medium text-white transition-colors hover:bg-white/5"
+            >
+              <span className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-[#9ef2df]" />
+                a103203@kentech.ac.kr
+              </span>
+              <span className="text-xs font-medium text-[#aeb8c6]">Lab Manager</span>
+            </a>
+            <div className="flex items-start gap-3 border-b border-white/10 px-5 py-4 text-sm leading-7 text-[#aeb8c6]">
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#9ef2df]" />
               <span>21 Kentech-gil, Naju-si, Jeollanam-do, 58330, Republic of Korea</span>
             </div>
-            <div className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/6 px-5 py-4 text-sm leading-7 text-slate-300">
-              <Building2 className="mt-1 h-4 w-4 shrink-0 text-teal-300" />
+            <div className="flex items-start gap-3 px-5 py-4 text-sm leading-7 text-[#aeb8c6]">
+              <Building2 className="mt-1 h-4 w-4 shrink-0 text-[#9ef2df]" />
               <span>Korea Institute of Energy Technology | Tel. +82-61-320-9267</span>
             </div>
           </div>
