@@ -213,8 +213,8 @@ export default function Home(_props: HomeProps) {
       <section id="home" className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0">
           <Image
-            src="https://picsum.photos/seed/aipel-converter-measurement/1800/1100"
-            alt="Power converter measurement setup"
+            src="/aipel-power-electronics-hero.png"
+            alt="Power electronics converter hardware and measurement equipment"
             width={1800}
             height={1100}
             priority
