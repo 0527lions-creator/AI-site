@@ -270,6 +270,15 @@ export default function Home(_props: HomeProps) {
 
       <section id="profile" className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-[0.78fr_1.22fr] lg:px-8">
         <div>
+          <div className="mb-6 overflow-hidden border border-white/10 bg-[#0b111a]">
+            <Image
+              src="/prof-hwa-pyeong-park.jpg"
+              alt="Prof. Hwa Pyeong Park"
+              width={900}
+              height={1200}
+              className="aspect-[4/5] w-full object-cover object-top opacity-95"
+            />
+          </div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
             Professor
           </p>
