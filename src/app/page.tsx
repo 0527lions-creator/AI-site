@@ -160,21 +160,6 @@ const members = [
   },
 ];
 
-const galleryImages = [
-  {
-    title: 'Power Electronics Laboratory',
-    src: 'https://picsum.photos/seed/aipel-laboratory-power-module/1080/760',
-  },
-  {
-    title: 'Converter Measurement Setup',
-    src: 'https://picsum.photos/seed/aipel-converter-measurement/920/520',
-  },
-  {
-    title: 'Vehicle Power Conversion',
-    src: 'https://picsum.photos/seed/aipel-vehicle-power/920/680',
-  },
-];
-
 export default function Home(_props: HomeProps) {
   return (
     <main className="min-h-screen bg-[#06080d] text-[#f4f7fb]">
@@ -442,42 +427,6 @@ export default function Home(_props: HomeProps) {
               <p className="text-sm leading-7 text-[#c7d0dd]">{paper}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[#0a0f17]">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-          <div className="mb-10 grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d7a650]">
-                Visual Assets
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
-                Technical imagery with a restrained dark interface.
-              </h2>
-            </div>
-            <p className="text-sm leading-7 text-[#aeb8c6]">
-              기존 사이트에서 사용한 사진 자산을 유지하면서, 연구성과 중심 콘텐츠와 어울리도록
-              명도와 레이아웃을 정돈했습니다.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {galleryImages.map((image) => (
-              <figure key={image.src} className="group overflow-hidden border border-white/10 bg-[#0b111a]">
-                <Image
-                  src={image.src}
-                  alt={image.title}
-                  width={1080}
-                  height={760}
-                  className="aspect-[4/3] w-full object-cover opacity-75 transition duration-300 group-hover:opacity-100"
-                />
-                <figcaption className="border-t border-white/10 px-4 py-3 text-sm font-medium text-[#e7edf5]">
-                  {image.title}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
         </div>
       </section>
 
