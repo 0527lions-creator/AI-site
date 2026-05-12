@@ -13,6 +13,7 @@ import {
   Mail,
   MapPin,
   Network,
+  Phone,
   ShieldCheck,
   SunMedium,
   Users,
@@ -185,8 +186,7 @@ const sectionDescriptions: Record<SectionId, string> = {
 function navButtonClass(isActive: boolean) {
   const base =
     'whitespace-nowrap border px-3 py-2 text-sm font-medium transition-colors';
-  const active =
-    'border-[#d7a650] bg-[#d7a650] text-[#101318]';
+  const active = 'border-[#d7a650] bg-[#d7a650] text-[#101318]';
   const inactive =
     'border-white/10 bg-white/4 text-[#aeb8c6] hover:border-[#6ee7d2]/40 hover:text-[#9ef2df]';
 
@@ -255,6 +255,8 @@ export default function Home(_props: HomeProps) {
       {activeSection === 'papers' && <PapersSection />}
       {activeSection === 'members' && <MembersSection />}
       {activeSection === 'contact' && <ContactSection />}
+
+      <SiteFooter />
     </main>
   );
 }
@@ -558,5 +560,26 @@ function ContactSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="border-t border-white/10 bg-[#05070b]">
+      <div className="mx-auto grid max-w-7xl gap-4 px-5 py-6 text-sm text-[#aeb8c6] sm:px-6 md:grid-cols-3 lg:px-8">
+        <div className="flex items-start gap-3">
+          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#9ef2df]" />
+          <span>21 Kentech-gil, Naju-si, Jeollanam-do, 58330, Republic of Korea</span>
+        </div>
+        <a href="mailto:hppark@kentech.ac.kr" className="flex items-center gap-3 transition-colors hover:text-white">
+          <Mail className="h-4 w-4 shrink-0 text-[#9ef2df]" />
+          hppark@kentech.ac.kr
+        </a>
+        <div className="flex items-center gap-3">
+          <Phone className="h-4 w-4 shrink-0 text-[#9ef2df]" />
+          <span>+82-61-320-9267</span>
+        </div>
+      </div>
+    </footer>
   );
 }
