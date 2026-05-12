@@ -566,18 +566,32 @@ function ContactSection() {
 function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-[#05070b]">
-      <div className="mx-auto grid max-w-7xl gap-4 px-5 py-6 text-sm text-[#aeb8c6] sm:px-6 md:grid-cols-3 lg:px-8">
-        <div className="flex items-start gap-3">
-          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#9ef2df]" />
-          <span>21 Kentech-gil, Naju-si, Jeollanam-do, 58330, Republic of Korea</span>
-        </div>
-        <a href="mailto:hppark@kentech.ac.kr" className="flex items-center gap-3 transition-colors hover:text-white">
-          <Mail className="h-4 w-4 shrink-0 text-[#9ef2df]" />
-          hppark@kentech.ac.kr
-        </a>
-        <div className="flex items-center gap-3">
-          <Phone className="h-4 w-4 shrink-0 text-[#9ef2df]" />
-          <span>+82-61-320-9267</span>
+      <div className="mx-auto max-w-7xl px-5 py-7 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-white">AI-PEL</p>
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-[#8f9aa8]">
+              Korea Institute of Energy Technology
+            </p>
+          </div>
+
+          <div className="grid gap-3 text-sm text-[#aeb8c6] lg:grid-cols-[minmax(360px,1fr)_auto_auto] lg:items-center">
+            <div className="flex items-start gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#9ef2df]" />
+              <span>21 Kentech-gil, Naju-si, Jeollanam-do, 58330, Republic of Korea</span>
+            </div>
+            <a
+              href="mailto:hppark@kentech.ac.kr"
+              className="flex items-center gap-3 whitespace-nowrap transition-colors hover:text-white"
+            >
+              <Mail className="h-4 w-4 shrink-0 text-[#9ef2df]" />
+              hppark@kentech.ac.kr
+            </a>
+            <div className="flex items-center gap-3 whitespace-nowrap">
+              <Phone className="h-4 w-4 shrink-0 text-[#9ef2df]" />
+              <span>+82-61-320-9267</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
